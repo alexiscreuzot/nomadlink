@@ -130,6 +130,7 @@ module.exports = function () {
         singleEvents: true,
         timeMin: timeMin,
         timeMax: timeMax,
+        accessRole: "writer"
       },
       (err, response) => {
         if (err) {

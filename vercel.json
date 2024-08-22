@@ -1,0 +1,21 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "package.json",
+        "use": "@vercel/node"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "/"
+      }
+    ],
+    "build": {
+      "env": {
+        "NODE_OPTIONS": "--max_old_space_size=4096"
+      }
+    }
+  }
+  
