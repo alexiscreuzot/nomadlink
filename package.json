@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node app.js",
+    "build": "lessc public/stylesheets/styles.less public/stylesheets/styles.css",
     "lint": "eslint app.js config.js",
     "test": "npm run lint"
   },

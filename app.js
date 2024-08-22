@@ -6,8 +6,6 @@ const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const errorHandler = require('errorhandler');
 const path = require('path');
-const lessMiddleware = require('less-middleware');
-const minify = require('express-minify');
 const { OAuth2Client } = require('google-auth-library');
 const moment = require('moment');
 const dotenv = require('dotenv');
@@ -27,8 +25,7 @@ app.use(bodyParser.json());
 app.use(methodOverride());
 app.use(errorHandler());
 
-app.use(lessMiddleware(path.join(__dirname, 'public'), { force: true, compress: true, optimization: 2 }));
-app.use(minify());
+// Serve static files
 app.use(express.static(path.join(__dirname, 'public')));
 
 // OAuth setup
