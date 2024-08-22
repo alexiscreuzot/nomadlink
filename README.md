@@ -1,16 +1,15 @@
 ## Nomadlink
 
-Source for Happy Hours [Nomadlink](https://nomadlink.onrender.com) interface
+Source for Happy Hours [Nomadlink](https://nomadlink.vercel.app) interface
 
 #### Getting started
 
 ```
-$ npm install
-$ npm install -g nodemon
-$ nodemon
+$ yarn install
+$ yarn start
 ```
 
 #### Deployment
 
-This website is now deployed on Render (https://render.com)
+This website is now deployed on Vercel (https://vercel.com)
 Just push changes to the `master` branch to get them reflected in production.
