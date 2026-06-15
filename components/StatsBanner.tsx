@@ -25,7 +25,7 @@ export function StatsBanner({
   nomadCount: number;
 }) {
   return (
-    <div className="inline-flex items-center divide-x divide-ink/10 rounded-full bg-white px-2 py-1.5 shadow-soft">
+    <div className="inline-flex items-center justify-center divide-x divide-ink/10 self-center rounded-full bg-white px-2 py-1.5 shadow-soft sm:self-auto">
       <Stat value={totalReservations} label="Réservations" accent="text-buttercup" />
       <Stat value={nomadCount} label="Nomades" accent="text-sky" />
     </div>

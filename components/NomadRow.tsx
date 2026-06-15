@@ -8,31 +8,63 @@ import {
   priceForDays,
 } from "@/lib/pricing";
 
-function PriceRow({ label, amount }: { label: string; amount: Amount }) {
+function PriceTier({
+  label,
+  amount,
+  isPrimary,
+}: {
+  label: string;
+  amount: Amount;
+  isPrimary?: boolean;
+}) {
   return (
-    <div className="flex items-baseline justify-between gap-3">
-      <span className="text-xs font-semibold uppercase tracking-wide text-ink-soft">
+    <div
+      className={`flex flex-1 flex-col gap-1 border-l-2 pl-3 ${
+        isPrimary ? "border-ink" : "border-ink/15"
+      }`}
+    >
+      <span
+        className={`text-[11px] font-semibold uppercase tracking-wide ${
+          isPrimary ? "text-ink" : "text-ink-soft/70"
+        }`}
+      >
         {label}
       </span>
-      <span className="flex items-baseline gap-2">
-        <span className="text-base font-bold tabular-nums text-ink">
-          {formatEUR(amount.ht)}
-          <span className="ml-0.5 text-[10px] font-medium text-ink-soft">HT</span>
-        </span>
-        <span className="text-xs tabular-nums text-ink-soft">
-          {formatEUR(amount.ttc)} TTC
-        </span>
+      <span
+        className={`font-bold leading-none tabular-nums ${
+          isPrimary
+            ? "text-[32px] text-ink sm:text-[34px]"
+            : "text-2xl text-ink-soft/60 sm:text-[26px]"
+        }`}
+      >
+        {formatEUR(amount.ttc)}
+      </span>
+      <span
+        className={`text-[11px] font-medium tabular-nums ${
+          isPrimary ? "text-ink-soft" : "text-ink-soft/50"
+        }`}
+      >
+        {formatEUR(amount.ht)} HT
       </span>
     </div>
   );
 }
 
-function BillingPanel({ price }: { price: DayPricing }) {
+function BillingPanel({ days, price }: { days: number; price: DayPricing }) {
   return (
-    <div className="flex flex-1 flex-col justify-center gap-2.5 rounded-xl bg-cream px-4 py-3">
-      <PriceRow label="Adhérent" amount={price.member} />
-      <div className="h-px bg-ink/10" />
-      <PriceRow label="Non-adhérent" amount={price.nonMember} />
+    <div className="flex flex-1 flex-col gap-3">
+      <div className="flex items-baseline justify-between border-b border-ink/10 pb-2">
+        <span className="text-[11px] font-semibold uppercase tracking-wide text-ink-soft">
+          Prix à payer
+        </span>
+        <span className="text-[11px] font-medium tabular-nums text-ink-soft/70">
+          {days} {days > 1 ? "jours" : "jour"} · TTC
+        </span>
+      </div>
+      <div className="flex gap-5">
+        <PriceTier label="Adhérent" amount={price.member} isPrimary />
+        <PriceTier label="Non-adhérent" amount={price.nonMember} />
+      </div>
     </div>
   );
 }
@@ -50,7 +82,7 @@ function MiniCalendar({
 }) {
   const used = new Set(days);
   return (
-    <div className="grid w-[252px] grid-cols-7 gap-1 text-center">
+    <div className="mx-auto grid w-full max-w-[280px] grid-cols-7 gap-1 text-center sm:mx-0 sm:w-[252px]">
       {weekdayLabels.map((label, index) => (
         <span
           key={`label-${index}`}
@@ -157,14 +189,14 @@ export function NomadRow({
         }`}
       >
         <div className="overflow-hidden">
-          <div className="mt-4 ml-8 flex flex-col gap-5 sm:flex-row sm:items-stretch sm:gap-6">
+          <div className="mt-4 flex flex-col gap-4 sm:ml-8 sm:flex-row sm:items-stretch sm:gap-6">
             <MiniCalendar
               weeks={weeks}
               weekdayLabels={weekdayLabels}
               days={days}
               barClass={barClass}
             />
-            <BillingPanel price={price} />
+            <BillingPanel days={count} price={price} />
           </div>
         </div>
       </div>
