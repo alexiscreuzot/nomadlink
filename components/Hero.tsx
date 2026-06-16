@@ -8,10 +8,10 @@ export function Hero({ date }: { date: Date }) {
         <Image
           src="/images/bunny.png"
           alt="Happy Hours"
-          width={84}
-          height={170}
+          width={104}
+          height={210}
           priority
-          className="h-auto w-[68px] shrink-0 self-start sm:w-[84px]"
+          className="h-auto w-[84px] shrink-0 self-start sm:w-[104px]"
         />
 
         <div className="min-w-0 flex-1">

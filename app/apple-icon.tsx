@@ -1,0 +1,48 @@
+import { ImageResponse } from "next/og";
+
+export const size = { width: 180, height: 180 };
+export const contentType = "image/png";
+
+const bunny = `
+<svg width="120" height="120" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g fill="#f3e9db" stroke="#493930" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M27 27C21 24 18 13 21 8c3-4 7 4 8 17z" />
+    <path d="M37 27c6-3 9-14 6-19-3-4-7 4-8 17z" />
+    <path d="M32 23c9 0 15 7 15 16 0 10-7 16-15 16s-15-6-15-16c0-9 6-16 15-16z" />
+  </g>
+  <path d="M25.5 25c-3-3-5-11-3-15 2 3 4 9 5.5 14z" fill="#ff8f9b" />
+  <path d="M38.5 25c3-3 5-11 3-15-2 3-4 9-5.5 14z" fill="#ff8f9b" />
+  <circle cx="26" cy="39" r="2.6" fill="#493930" />
+  <circle cx="38" cy="39" r="2.6" fill="#493930" />
+  <circle cx="25.1" cy="38.1" r="0.85" fill="#f3e9db" />
+  <circle cx="37.1" cy="38.1" r="0.85" fill="#f3e9db" />
+  <path d="M32 43.4c-2 0-3.2 1-3.2 2.1 0 1.4 2 2.6 3.2 2.6s3.2-1.2 3.2-2.6c0-1.1-1.2-2.1-3.2-2.1z" fill="#ff8f9b" />
+  <path d="M32 48v2.3M32 50.3c-1.4 1.5-3 1-3.7-.4M32 50.3c1.4 1.5 3 1 3.7-.4" stroke="#493930" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+  <circle cx="21" cy="44.5" r="2.4" fill="#ff8f9b" opacity="0.55" />
+  <circle cx="43" cy="44.5" r="2.4" fill="#ff8f9b" opacity="0.55" />
+</svg>`;
+
+export default function AppleIcon() {
+  return new ImageResponse(
+    (
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          backgroundImage: "linear-gradient(135deg, #ffd356 0%, #f6a623 100%)",
+        }}
+      >
+        <img
+          width={120}
+          height={120}
+          src={`data:image/svg+xml;base64,${Buffer.from(bunny).toString("base64")}`}
+          alt="Nomadlink"
+        />
+      </div>
+    ),
+    size,
+  );
+}

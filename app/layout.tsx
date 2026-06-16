@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { Outfit } from "next/font/google";
 import "./globals.css";
@@ -12,6 +12,10 @@ const outfit = Outfit({
 export const metadata: Metadata = {
   title: "Nomadlink — Réservations Nomades",
   description: "Réservations des nomades de l'espace de coworking Happy Hours.",
+};
+
+export const viewport: Viewport = {
+  themeColor: "#f6a623",
 };
 
 export default function RootLayout({
