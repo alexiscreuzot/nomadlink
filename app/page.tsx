@@ -60,8 +60,8 @@ function ReservationsSkeleton() {
   return (
     <div className="flex flex-col gap-3">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
-        <div className="h-12 w-56 animate-pulse rounded-full bg-white/70" />
-        <div className="h-12 flex-1 animate-pulse rounded-full bg-white/70" />
+        <div className="h-12 w-56 animate-pulse rounded-full bg-cream-deep" />
+        <div className="h-12 flex-1 animate-pulse rounded-full bg-cream-deep" />
       </div>
       <ol className="flex flex-col gap-1.5">
         {Array.from({ length: 6 }).map((_, index) => (

@@ -49,7 +49,7 @@ export function NomadFilter({
             onChange={(event) => setQuery(event.target.value)}
             placeholder="Filtrer par nom…"
             aria-label="Filtrer par nom"
-            className="w-full rounded-full border-2 border-ink/10 bg-white py-3 pl-11 pr-4 text-sm font-medium text-ink shadow-soft outline-none transition placeholder:text-ink-soft/70 hover:border-sky focus-visible:border-sky focus-visible:ring-4 focus-visible:ring-sky/30"
+            className="w-full rounded-full border-2 border-ink/20 bg-transparent py-3 pl-11 pr-4 text-sm font-medium text-ink outline-none transition placeholder:text-ink-soft/70 hover:border-sky focus-visible:border-sky focus-visible:ring-4 focus-visible:ring-sky/30"
           />
         </div>
         {selector}

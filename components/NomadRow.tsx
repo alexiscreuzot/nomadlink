@@ -140,7 +140,7 @@ export function NomadRow({
 
   return (
     <li
-      className="rise rounded-2xl bg-white px-4 py-3.5 shadow-soft transition-shadow hover:shadow-lift sm:px-5"
+      className="rise relative rounded-2xl bg-white px-4 py-3.5 shadow-soft transition-shadow hover:shadow-lift sm:px-5"
       style={{ animationDelay: `${Math.min((rank - 1) * 40, 320)}ms` }}
     >
       <button
@@ -148,8 +148,12 @@ export function NomadRow({
         onClick={() => setOpen((value) => !value)}
         aria-expanded={open}
         aria-controls={datesId}
-        className="flex w-full cursor-pointer items-center gap-3 text-left"
+        className="absolute inset-0 z-10 cursor-pointer rounded-2xl"
       >
+        <span className="sr-only">{name}</span>
+      </button>
+
+      <div className="pointer-events-none flex items-center gap-3">
         <span className="w-5 shrink-0 text-center text-xs font-semibold tabular-nums text-ink-soft">
           {rank}
         </span>
@@ -176,9 +180,9 @@ export function NomadRow({
         >
           <path d="m5 7 5 5 5-5" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
-      </button>
+      </div>
 
-      <div className="mt-2.5 ml-8 h-1.5 overflow-hidden rounded-full bg-cream-deep">
+      <div className="pointer-events-none mt-2.5 ml-8 h-1.5 overflow-hidden rounded-full bg-cream-deep">
         <div className={`h-full rounded-full ${barClass}`} style={{ width: `${share}%` }} />
       </div>
 
@@ -189,7 +193,7 @@ export function NomadRow({
         }`}
       >
         <div className="overflow-hidden">
-          <div className="mt-4 flex flex-col gap-4 sm:ml-8 sm:flex-row sm:items-stretch sm:gap-6">
+          <div className="pointer-events-none mt-4 flex flex-col gap-4 sm:ml-8 sm:flex-row sm:items-stretch sm:gap-6">
             <MiniCalendar
               weeks={weeks}
               weekdayLabels={weekdayLabels}
