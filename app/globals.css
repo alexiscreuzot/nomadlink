@@ -5,6 +5,7 @@
   --color-cream-deep: #ece0cd;
   --color-ink: #493930;
   --color-ink-soft: #6f5d50;
+  --color-line: #ebe0ce;
 
   --color-buttercup: #f6a623;
   --color-sun: #ffd356;
@@ -15,9 +16,6 @@
   --font-sans: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
 
   --radius-card: 1.5rem;
-
-  --shadow-soft: 0 1px 2px rgba(73, 57, 48, 0.04), 0 12px 32px -12px rgba(73, 57, 48, 0.18);
-  --shadow-lift: 0 1px 2px rgba(73, 57, 48, 0.05), 0 24px 48px -16px rgba(73, 57, 48, 0.28);
 }
 
 html {
@@ -28,12 +26,6 @@ html {
 body {
   background-color: var(--color-cream);
   color: var(--color-ink);
-  background-image: radial-gradient(
-    120% 60% at 50% -10%,
-    rgba(255, 211, 86, 0.22) 0%,
-    transparent 60%
-  );
-  background-attachment: fixed;
 }
 
 ::selection {

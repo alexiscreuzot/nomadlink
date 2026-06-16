@@ -24,7 +24,7 @@ export function DayPicker({ label, value }: { label: string; value: string }) {
       type="button"
       onClick={openPicker}
       disabled={isPending}
-      className="relative inline-flex items-center gap-1.5 rounded-full border border-ink/10 bg-cream/70 py-1 pl-3.5 pr-2.5 text-sm font-semibold text-ink transition hover:border-sky/50 disabled:opacity-60"
+      className="relative inline-flex items-center gap-1.5 rounded-full border border-line bg-cream-deep/40 py-1 pl-3.5 pr-2.5 text-sm font-semibold text-ink transition hover:border-ink/25 hover:bg-cream-deep/70 disabled:opacity-60"
     >
       {label}
       <svg

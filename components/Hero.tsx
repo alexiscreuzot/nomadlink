@@ -11,7 +11,7 @@ export function Hero({ date }: { date: Date }) {
           width={84}
           height={170}
           priority
-          className="h-auto w-[68px] shrink-0 self-start drop-shadow-[0_14px_24px_rgba(73,57,48,0.18)] sm:w-[84px]"
+          className="h-auto w-[68px] shrink-0 self-start sm:w-[84px]"
         />
 
         <div className="min-w-0 flex-1">

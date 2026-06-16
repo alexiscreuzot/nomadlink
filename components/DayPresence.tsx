@@ -54,10 +54,10 @@ function DayPresenceSkeleton() {
 
 export function DayPresence({ date }: { date: Date }) {
   return (
-    <div className="mt-4 w-fit max-w-full rounded-card bg-white px-4 py-4 shadow-soft sm:px-5">
+    <div className="mt-4 w-fit max-w-full rounded-card border border-line bg-white px-4 py-4 sm:px-5">
       <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
         <span className="flex items-center gap-2">
-          <span className="size-1.5 rounded-full bg-sky" />
+          <span className="size-2 rounded-full bg-sky" />
           <span className="text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-ink-soft">
             Au coworking
           </span>

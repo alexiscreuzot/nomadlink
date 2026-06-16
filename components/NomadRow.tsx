@@ -140,7 +140,7 @@ export function NomadRow({
 
   return (
     <li
-      className="rise relative rounded-2xl bg-white px-4 py-3.5 shadow-soft transition-shadow hover:shadow-lift sm:px-5"
+      className="rise relative rounded-card border border-line bg-white px-4 py-3.5 transition-colors hover:border-ink/25 sm:px-5"
       style={{ animationDelay: `${Math.min((rank - 1) * 40, 320)}ms` }}
     >
       <button
@@ -148,7 +148,7 @@ export function NomadRow({
         onClick={() => setOpen((value) => !value)}
         aria-expanded={open}
         aria-controls={datesId}
-        className="absolute inset-0 z-10 cursor-pointer rounded-2xl"
+        className="absolute inset-0 z-10 cursor-pointer rounded-card"
       >
         <span className="sr-only">{name}</span>
       </button>
