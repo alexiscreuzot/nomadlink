@@ -1,12 +1,19 @@
 import { Suspense } from "react";
-import { Header } from "@/components/Header";
+import { Hero } from "@/components/Hero";
 import { MonthSelector } from "@/components/MonthSelector";
 import { NomadList } from "@/components/NomadList";
 import { StatsBanner } from "@/components/StatsBanner";
 import { getReservations } from "@/lib/calendar";
-import { monthOptions, monthSlug, parseMonthSlug, startOfMonth } from "@/lib/dates";
+import {
+  monthOptions,
+  monthSlug,
+  parseDateSlug,
+  parseMonthSlug,
+  startOfMonth,
+  todayInParis,
+} from "@/lib/dates";
 
-type SearchParams = Promise<{ m?: string }>;
+type SearchParams = Promise<{ m?: string; d?: string }>;
 
 const MIN_LOADER_MS = 500;
 
@@ -80,14 +87,15 @@ export default async function HomePage({
 }: {
   searchParams: SearchParams;
 }) {
-  const { m } = await searchParams;
+  const { m, d } = await searchParams;
   const month = parseMonthSlug(m) ?? startOfMonth(new Date());
+  const day = parseDateSlug(d) ?? todayInParis();
   const selectedSlug = monthSlug(month);
   const options = monthOptions();
 
   return (
-    <div className="mx-auto flex min-h-dvh max-w-3xl flex-col gap-8 px-5 py-12 sm:py-16">
-      <Header />
+    <div className="mx-auto flex min-h-dvh max-w-3xl flex-col gap-6 px-5 py-12 sm:py-16">
+      <Hero date={day} />
 
       <div className="flex justify-center">
         <MonthSelector options={options} selected={selectedSlug} />

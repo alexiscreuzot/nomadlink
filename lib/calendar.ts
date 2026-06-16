@@ -143,3 +143,12 @@ export async function getReservations(month: Date): Promise<ReservationSummary> 
 
   return { totalReservations, nomads };
 }
+
+export async function getNomadsForDay(date: Date): Promise<string[]> {
+  const { nomads } = await getReservations(startOfMonth(date));
+  const day = date.getUTCDate();
+  return nomads
+    .filter((nomad) => nomad.days.includes(day))
+    .map((nomad) => nomad.name)
+    .sort((a, b) => a.localeCompare(b, "fr"));
+}
