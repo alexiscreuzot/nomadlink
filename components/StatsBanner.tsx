@@ -9,7 +9,7 @@ function Stat({
 }) {
   return (
     <div className="flex items-baseline gap-2 px-4 py-1.5">
-      <span className={`text-3xl font-bold tabular-nums ${accent}`}>{value}</span>
+      <span className={`text-2xl font-bold tabular-nums ${accent}`}>{value}</span>
       <span className="text-sm font-medium uppercase tracking-wide text-ink-soft">
         {label}
       </span>

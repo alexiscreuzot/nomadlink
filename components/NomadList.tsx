@@ -20,16 +20,16 @@ export function NomadList({
   nomads: Nomad[];
   month: Date;
   stats?: ReactNode;
-  selector?: ReactNode;
+  selector: ReactNode;
 }) {
   if (nomads.length === 0) {
     return (
       <div className="flex flex-col gap-3">
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
-          {stats}
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
           {selector}
+          {stats}
         </div>
-        <div className="rounded-card bg-white p-10 text-center shadow-soft">
+        <div className="rounded-card border border-line bg-white p-10 text-center">
           <p className="text-lg font-semibold text-ink">Aucune réservation ce mois-ci.</p>
           <p className="mt-1 text-ink-soft">
             Choisis un autre mois pour voir les nomades.

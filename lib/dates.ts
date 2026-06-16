@@ -88,15 +88,14 @@ export function formatDayLabel(date: Date, today = todayInParis()): string {
   );
 }
 
-/** "Juin 2026" */
+/** "Sept 2026" */
 export function formatMonthLabel(date: Date): string {
-  return capitalize(
-    new Intl.DateTimeFormat("fr-FR", {
-      month: "long",
-      year: "numeric",
-      timeZone: "UTC",
-    }).format(date),
-  );
+  const formatted = new Intl.DateTimeFormat("fr-FR", {
+    month: "short",
+    year: "numeric",
+    timeZone: "UTC",
+  }).format(date);
+  return capitalize(formatted.replace(".", ""));
 }
 
 /** Monday-first weekday labels. */

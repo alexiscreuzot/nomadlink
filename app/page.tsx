@@ -1,6 +1,6 @@
-import { Suspense } from "react";
+import { Suspense, type ReactNode } from "react";
 import { Hero } from "@/components/Hero";
-import { MonthSelector } from "@/components/MonthSelector";
+import { MonthSelect } from "@/components/MonthSelect";
 import { NomadList } from "@/components/NomadList";
 import { StatsBanner } from "@/components/StatsBanner";
 import { getReservations } from "@/lib/calendar";
@@ -21,7 +21,13 @@ function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-async function Reservations({ month }: { month: Date }) {
+async function Reservations({
+  month,
+  selector,
+}: {
+  month: Date;
+  selector: ReactNode;
+}) {
   let data;
   try {
     const [result] = await Promise.all([
@@ -31,7 +37,7 @@ async function Reservations({ month }: { month: Date }) {
     data = result;
   } catch {
     return (
-      <div className="rounded-card bg-white p-10 text-center shadow-soft">
+      <div className="rounded-card border border-line bg-white p-10 text-center">
         <p className="text-lg font-semibold text-salmon">
           Impossible de charger les réservations.
         </p>
@@ -46,6 +52,7 @@ async function Reservations({ month }: { month: Date }) {
     <NomadList
       nomads={data.nomads}
       month={month}
+      selector={selector}
       stats={
         <StatsBanner
           totalReservations={data.totalReservations}
@@ -63,11 +70,11 @@ function ReservationsSkeleton() {
         <div className="h-12 w-56 animate-pulse rounded-full bg-cream-deep" />
         <div className="h-12 flex-1 animate-pulse rounded-full bg-cream-deep" />
       </div>
-      <ol className="flex flex-col gap-1.5">
+      <ol className="flex flex-col gap-2">
         {Array.from({ length: 6 }).map((_, index) => (
           <li
             key={index}
-            className="rounded-2xl bg-white px-4 py-3.5 shadow-soft sm:px-5"
+            className="rounded-card border border-line bg-white px-4 py-3.5 sm:px-5"
           >
             <div className="flex items-center gap-3">
               <div className="h-4 w-5 animate-pulse rounded bg-cream-deep" />
@@ -97,13 +104,14 @@ export default async function HomePage({
     <div className="mx-auto flex min-h-dvh max-w-3xl flex-col gap-6 px-5 py-12 sm:py-16">
       <Hero date={day} />
 
-      <div className="flex justify-center">
-        <MonthSelector options={options} selected={selectedSlug} />
+      <div className="mt-3 sm:mt-6">
+        <Suspense key={selectedSlug} fallback={<ReservationsSkeleton />}>
+          <Reservations
+            month={month}
+            selector={<MonthSelect options={options} selected={selectedSlug} />}
+          />
+        </Suspense>
       </div>
-
-      <Suspense key={selectedSlug} fallback={<ReservationsSkeleton />}>
-        <Reservations month={month} />
-      </Suspense>
 
       <footer className="mt-auto pt-8 text-center text-xs uppercase tracking-[0.2em] text-ink-soft/70">
         © {new Date().getFullYear()} Happy Hours
