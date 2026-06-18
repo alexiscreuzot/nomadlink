@@ -61,7 +61,7 @@ function BillingPanel({ days, price }: { days: number; price: DayPricing }) {
           {days} {days > 1 ? "jours" : "jour"} · TTC
         </span>
       </div>
-      <div className="flex gap-5">
+      <div className="flex flex-col gap-4 sm:flex-row sm:gap-5">
         <PriceTier label="Adhérent" amount={price.member} isPrimary />
         <PriceTier label="Non-adhérent" amount={price.nonMember} />
       </div>
@@ -82,7 +82,7 @@ function MiniCalendar({
 }) {
   const used = new Set(days);
   return (
-    <div className="mx-auto grid w-full max-w-[280px] grid-cols-7 gap-1 text-center sm:mx-0 sm:w-[252px]">
+    <div className="mx-auto grid w-full min-w-0 grid-cols-7 gap-1 text-center sm:mx-0 sm:w-[252px] sm:shrink-0">
       {weekdayLabels.map((label, index) => (
         <span
           key={`label-${index}`}
@@ -97,7 +97,7 @@ function MiniCalendar({
         ) : (
           <span
             key={`cell-${index}`}
-            className={`flex h-7 items-center justify-center rounded-md text-xs tabular-nums ${
+            className={`flex aspect-square items-center justify-center rounded-md text-xs tabular-nums ${
               used.has(day)
                 ? `${barClass} font-semibold text-white`
                 : "text-ink-soft/50"
@@ -193,7 +193,7 @@ export function NomadRow({
         }`}
       >
         <div className="overflow-hidden">
-          <div className="pointer-events-none mt-4 flex flex-col gap-4 sm:ml-8 sm:flex-row sm:items-stretch sm:gap-6">
+          <div className="pointer-events-none mt-4 flex min-w-0 flex-col gap-4 sm:ml-8 sm:flex-row sm:items-stretch sm:gap-6">
             <MiniCalendar
               weeks={weeks}
               weekdayLabels={weekdayLabels}

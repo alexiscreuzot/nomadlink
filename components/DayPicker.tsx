@@ -1,30 +1,18 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { useRef, useTransition } from "react";
+import { useTransition } from "react";
 
 export function DayPicker({ label, value }: { label: string; value: string }) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isPending, startTransition] = useTransition();
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  function openPicker() {
-    const input = inputRef.current;
-    if (!input) return;
-    if (typeof input.showPicker === "function") {
-      input.showPicker();
-    } else {
-      input.focus();
-    }
-  }
 
   return (
-    <button
-      type="button"
-      onClick={openPicker}
-      disabled={isPending}
-      className="relative inline-flex items-center gap-1.5 rounded-full border border-line bg-cream-deep/40 py-1 pl-3.5 pr-2.5 text-sm font-semibold text-ink transition hover:border-ink/25 hover:bg-cream-deep/70 disabled:opacity-60"
+    <label
+      className={`relative inline-flex items-center gap-1.5 rounded-full border border-line bg-cream-deep/40 py-1 pl-3.5 pr-2.5 text-sm font-semibold text-ink transition hover:border-ink/25 hover:bg-cream-deep/70 ${
+        isPending ? "pointer-events-none opacity-60" : "cursor-pointer"
+      }`}
     >
       {label}
       <svg
@@ -39,12 +27,10 @@ export function DayPicker({ label, value }: { label: string; value: string }) {
         <path d="M3 8h14M7 3v3M13 3v3" strokeLinecap="round" />
       </svg>
       <input
-        ref={inputRef}
         type="date"
         value={value}
         disabled={isPending}
         aria-label="Choisir la date"
-        tabIndex={-1}
         onChange={(event) => {
           if (!event.target.value) return;
           const next = new URLSearchParams(searchParams.toString());
@@ -53,8 +39,8 @@ export function DayPicker({ label, value }: { label: string; value: string }) {
             router.push(`/?${next.toString()}`);
           });
         }}
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-0 w-full opacity-0"
+        className="absolute inset-0 size-full cursor-pointer opacity-0"
       />
-    </button>
+    </label>
   );
 }
