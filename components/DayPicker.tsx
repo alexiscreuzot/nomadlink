@@ -1,15 +1,31 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { useTransition } from "react";
+import { useRef, useTransition } from "react";
 
 export function DayPicker({ label, value }: { label: string; value: string }) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isPending, startTransition] = useTransition();
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  function open() {
+    const input = inputRef.current;
+    if (!input) return;
+    if (typeof input.showPicker === "function") {
+      try {
+        input.showPicker();
+        return;
+      } catch {
+        // fall through to focus
+      }
+    }
+    input.focus();
+  }
 
   return (
     <label
+      onClick={open}
       className={`relative inline-flex items-center gap-1.5 rounded-full border border-line bg-cream-deep/40 py-1 pl-3.5 pr-2.5 text-sm font-semibold text-ink transition hover:border-ink/25 hover:bg-cream-deep/70 ${
         isPending ? "pointer-events-none opacity-60" : "cursor-pointer"
       }`}
@@ -27,6 +43,7 @@ export function DayPicker({ label, value }: { label: string; value: string }) {
         <path d="M3 8h14M7 3v3M13 3v3" strokeLinecap="round" />
       </svg>
       <input
+        ref={inputRef}
         type="date"
         value={value}
         disabled={isPending}
